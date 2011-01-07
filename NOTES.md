@@ -31,3 +31,21 @@ Right now, TableFu doesn't have a transpose function, so adding that is on the a
  [3]: https://github.com/kennethreitz/tablib/
 
 As soon as this is cleaned up I'm going to shove it in a database (probably Mongo) and run actual queries.
+
+Database structure
+------------------
+
+ - app
+   - Model
+     - field
+
+ - tables
+   - Table
+     - title
+     - created (datetime)
+     - updated (datetime)
+     - tags (list)
+     - public (bool)
+     - columns (list)
+     - rows (json)
+
