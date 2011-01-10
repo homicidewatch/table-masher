@@ -26,9 +26,7 @@ Part of the difficulty with this data set is the number of data types. Using [Ta
 
 TableFu alone will get us a slightly more useful set of data. We can facet the table by country or by series. Splitting it up by country gives us 57 new files.
 
-Right now, TableFu doesn't have a transpose function, so adding that is on the agenda. Data by year should really be in rows, not columns. Country name is good to have somewhere but isn't what we're really looking for. Since I'm short on time, [tablib][3] will do the trick for now.
-
- [3]: https://github.com/kennethreitz/tablib/
+Next step is re-arranging the data into something more usable. I added a transpose method to TableFu. I want column names to be year, country name, country code, then data types, with each year of data in rows.
 
 As soon as this is cleaned up I'm going to shove it in a database (probably Mongo) and run actual queries.
 
@@ -55,4 +53,10 @@ Using MongoDB has its drawbacks. Most Django apps are built for the standard ORM
 
 (I'm suddenly wishing I had a better handle on CouchDB.)
 
-Another alternative: TableSetter (which TableFu was originally built for) has no concept of persistence. Metadata is stored in YAML files and data is parsed into TableFu objects every time. We could just swap YAML for a (simplified) database model and use Redis to store blobs of data, with storage/retrieval methods on the Django model.
+Another alternative: TableSetter (which TableFu was originally built for) has no real concept of persistence. Metadata is stored in YAML files and data is parsed into TableFu objects every time. We could just swap YAML for a (simplified) database model and use Redis to store blobs of data, with storage/retrieval methods on the Django model. Or CSVs could stay in the filesystem (or on the web) with data lazy-loaded when called for.
+
+Where I'm going with this (while something else is installing):
+
+I want a reporter to be able to upload a cleaned/refined data set and quickly compare values in another set. Over time, reporters will add new tables and find new comparisons. So, if I had a bunch of population and health records in different spreadsheets. I could copy columns between Excel projects or keep a master Google Doc. Or I could upload each sheet as I get it to TableMasher, and compare it with spreadsheets another reporter has uploaded.
+
+Wild-eyed alternative: What I'd really like is a command-line-like interface on the web, where data is filtered and transformed live, with results displayed below. A [CouchApp](http://couchapp.org) might be the way to do this, with a [CoffeeScript](http://coffeescript.org) DSL for filtering. Not something I'm likely to get done in a week, though.
