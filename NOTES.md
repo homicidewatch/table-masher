@@ -49,3 +49,10 @@ Database structure
      - columns (list)
      - rows (json)
 
+Rows are basically JSON (really, a list of dictionaries). We could stash this in a Django JSON field, but that means rows stop acting like rows. 
+
+Using MongoDB has its drawbacks. Most Django apps are built for the standard ORM and some flavor of SQL. MongoEngine is the closest to a viable alternative, with an auth backend and session engine included. It doesn't play well with Piston out of the box due to lack of native serializers. The project (at least in its main repo) hasn't had a commit since mid-October when it reached v0.4. I have a fork that incorporates multidb support (a must if only for testing purposes), plus a JSON serializer. If it ends up being too painful it shouldn't be hard to convert back to plain Django. There's really only one core model.
+
+(I'm suddenly wishing I had a better handle on CouchDB.)
+
+Another alternative: TableSetter (which TableFu was originally built for) has no concept of persistence. Metadata is stored in YAML files and data is parsed into TableFu objects every time. We could just swap YAML for a (simplified) database model and use Redis to store blobs of data, with storage/retrieval methods on the Django model.
