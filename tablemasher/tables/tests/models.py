@@ -24,8 +24,9 @@ class DataTest(TableTest):
         tabled = Table(
             title = "That Stimulus",
             added_by = self.user,
-            file = File(self.file)
+            file = File(self.file),
         )
+        
         tabled.save()
         
         self.assertEqual(arra.table, tabled.data.table)

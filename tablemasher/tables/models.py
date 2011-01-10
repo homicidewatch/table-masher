@@ -1,8 +1,12 @@
 import datetime
+import os
+
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 
 from tables.fields import SeparatedValuesField
+from tables.storage import OverwritingStorage
 from table_fu import TableFu
 from taggit.managers import TaggableManager
 
@@ -23,7 +27,7 @@ class Table(models.Model):
     # actual data
     columns = SeparatedValuesField(blank=True, null=True)
     url = models.URLField(blank=True)
-    file = models.FileField(blank=True, upload_to='tables/%Y/%m/%d')
+    file = models.FileField(blank=True, upload_to='tables/%Y/%m/%d', storage=OverwritingStorage())
     
     class Meta:
         get_latest_by = "updated"
@@ -40,7 +44,7 @@ class Table(models.Model):
         
         if self.file:
             # this gets wrapped in a with block for cleanliness
-            d = TableFu.from_file(self.file.name)
+            d = TableFu.from_file(os.path.join(settings.MEDIA_ROOT, self.file.name))
         
         elif self.url:
             d = TableFu.from_url(self.url)
