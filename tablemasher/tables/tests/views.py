@@ -1,8 +1,10 @@
 from django.test import TestCase
 
-class ViewTest(unittest.TestCase):
+class ViewTest(TestCase):
     
-    def setUp(self):
+    fixtures = ['fixtures/tables.json']
+    
+    def test_table_detail(self):
         pass
 
     

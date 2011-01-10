@@ -10,6 +10,17 @@ from tables.storage import OverwritingStorage
 from table_fu import TableFu
 from taggit.managers import TaggableManager
 
+from tablemasher.lib.managers import manager_from
+
+# managers
+
+class TableManager(object):
+    
+    def public(self):
+        return self.filter(public=True)
+
+# models
+
 class Table(models.Model):
     """
     A table imported into TableMasher, possibly by
@@ -29,12 +40,19 @@ class Table(models.Model):
     url = models.URLField(blank=True)
     file = models.FileField(blank=True, upload_to='tables/%Y/%m/%d', storage=OverwritingStorage())
     
+    objects = manager_from(TableManager)
+    
     class Meta:
         get_latest_by = "updated"
         ordering = ('-updated',)
     
     def  __unicode__(self):
         return self.title
+    
+    def save(self, *args, **kwargs):
+        if not self.columns and self.data:
+            self.columns = self.data.columns
+            super(Table, self).save(*args, **kwargs)
     
     @property
     def data(self):
@@ -49,6 +67,9 @@ class Table(models.Model):
         elif self.url:
             d = TableFu.from_url(self.url)
         
+        else:
+            return None
+                
         if self.columns:
             d.columns = self.columns
         

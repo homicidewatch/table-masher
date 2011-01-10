@@ -56,3 +56,6 @@ class DataTest(TableTest):
         
         self.assertEqual(arra.columns, tabled.data.columns)
     
+    def test_no_data(self):
+        nada = Table.objects.create(title="Nothing to see here", added_by=self.user)
+        self.failIf(nada.data)
