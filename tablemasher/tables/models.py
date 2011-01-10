@@ -44,7 +44,7 @@ class Table(models.Model):
         
         if self.file:
             # this gets wrapped in a with block for cleanliness
-            d = TableFu.from_file(os.path.join(settings.MEDIA_ROOT, self.file.name))
+            d = TableFu.from_file(self.file.path)
         
         elif self.url:
             d = TableFu.from_url(self.url)

@@ -44,4 +44,4 @@ class DataTest(TableTest):
         tabled.save()
         
         self.assertEqual(arra.columns, tabled.data.columns)
-        
+    
