@@ -1,7 +1,7 @@
 # Django settings for tablemasher project.
 import os
 
-DJANGO_ROOT = os.path.abspath(__file__)
+DJANGO_ROOT = os.path.abspath(os.path.dirname(__file__))
 f = lambda fn: os.path.join(DJANGO_ROOT, fn)
 
 DEBUG = True

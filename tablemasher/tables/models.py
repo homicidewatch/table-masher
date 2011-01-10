@@ -2,6 +2,7 @@ import datetime
 from django.contrib.auth.models import User
 from django.db import models
 
+from tables.fields import SeparatedValuesField
 from table_fu import TableFu
 from taggit.managers import TaggableManager
 
@@ -20,7 +21,7 @@ class Table(models.Model):
     tags = TaggableManager()
     
     # actual data
-    columns = models.CharField(max_length=255, blank=True) # change this to CSV field
+    columns = SeparatedValuesField(blank=True, null=True)
     url = models.URLField(blank=True)
     file = models.FileField(blank=True, upload_to='tables/%Y/%m/%d')
     

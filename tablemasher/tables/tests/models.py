@@ -26,5 +26,21 @@ class DataTest(TableTest):
             added_by = self.user,
             file = File(self.file)
         )
+        tabled.save()
         
         self.assertEqual(arra.table, tabled.data.table)
+    
+    def test_set_columns(self):
+        arra = TableFu.from_file(self.filename)
+        arra.columns = ["State", "County", "Urban Area"]
+        
+        tabled = Table(
+            title = "That Stimulus",
+            added_by = self.user,
+            file = File(self.file),
+            columns = ["State", "County", "Urban Area"]
+        )
+        tabled.save()
+        
+        self.assertEqual(arra.columns, tabled.data.columns)
+        
