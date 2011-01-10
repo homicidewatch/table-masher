@@ -13,11 +13,23 @@ class TableTest(TestCase):
         self.filename = os.path.join(DATA_DIR, 'arra.csv')
         self.file = open(self.filename)
         self.user = User.objects.create_user('Joe', 'plumber@example.com', 'password')
+        self.url = "https://spreadsheets.google.com/pub?key=0Aj9jJP3NwZQAdFlkTGtOYnhuNE9ZcHpIY1pHcDlnQUE&hl=en&single=true&gid=1&output=csv"
     
     def tearDown(self):
         self.file.close()
 
 class DataTest(TableTest):
+    
+    def test_from_url(self):
+        murders = TableFu.from_url(self.url)
+        tabled = Table(
+            title = "DC Homicides 2010",
+            added_by = self.user,
+            url = self.url
+        )
+        tabled.save()
+        
+        self.assertEqual(murders.table, tabled.data.table)
     
     def test_from_file(self):
         arra = TableFu.from_file(self.filename)
@@ -26,7 +38,6 @@ class DataTest(TableTest):
             added_by = self.user,
             file = File(self.file),
         )
-        
         tabled.save()
         
         self.assertEqual(arra.table, tabled.data.table)
