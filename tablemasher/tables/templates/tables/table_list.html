@@ -1,0 +1,10 @@
+{% extends "tables/base.html" %}
+
+{% block content %}
+    <h2>Tables to be Mashed</h2>
+    {% for table in object_list %}
+        <div class="table" id="table{{ table.id }}">
+            <h3>{{ table.title }}</h3>
+        </div>
+    {% endfor %}
+{% endblock %}

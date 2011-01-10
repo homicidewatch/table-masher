@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/screen.css" type="text/css" media="screen" charset="utf-8" />
+        <script src="http://code.jquery.com/jquery-1.4.4.min.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <body>
+        <header>
+            <div id="masthead">
+                {% block masthead %}{% endblock %}
+            </div>
+        </header>
+        <div id="main">
+            <div id="content">
+                {% block content %}
+                    Put some content here
+                {% endblock %}
+            </div>
+        </div>
+        <footer>
+            <div id="footer">
+                {% block footer %}
+                    
+                {% endblock %}
+            </div>
+        </footer>
+    </body>
