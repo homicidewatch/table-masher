@@ -60,3 +60,39 @@ Where I'm going with this (while something else is installing):
 I want a reporter to be able to upload a cleaned/refined data set and quickly compare values in another set. Over time, reporters will add new tables and find new comparisons. So, if I had a bunch of population and health records in different spreadsheets. I could copy columns between Excel projects or keep a master Google Doc. Or I could upload each sheet as I get it to TableMasher, and compare it with spreadsheets another reporter has uploaded.
 
 Wild-eyed alternative: What I'd really like is a command-line-like interface on the web, where data is filtered and transformed live, with results displayed below. A [CouchApp](http://couchapp.org) might be the way to do this, with a [CoffeeScript](http://coffeescript.org) DSL for filtering. Not something I'm likely to get done in a week, though.
+
+Ahem, anyway, past all that.
+
+I'm well down the path of doing this with traditional Django (ORM, templates, etc). This definitely has fewer pain points. Tables are slow to load, but I think that's on the rendering end, so I need some pagination or something. That shouldn't be too hard. It's fast enough in the shell.
+
+Updated Database structure
+------------------
+
+ - app
+   - Model
+     - field
+
+ - tables
+   - Table
+     - title
+     - created (datetime)
+     - updated (datetime)
+     - tags (taggit)
+     - public (bool)
+     - columns (csv)
+     
+     data: lazy load a TableFu instance
+
+URLs
+-----
+
+ - /
+ table list
+ 
+ - /<id>/
+ table detail
+ 
+ - /<id>/compare/
+ list other tables to compare this table to
+ 
+ - /<id>/compare/<id>
