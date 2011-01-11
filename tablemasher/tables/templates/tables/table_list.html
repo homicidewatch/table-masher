@@ -1,10 +1,27 @@
 {% extends "tables/base.html" %}
 
+{% block css %}
+    {{ block.super }}
+    <style>
+    div.table { margin-top: 1.5em; }
+    </style>
+{% endblock %}
+
 {% block content %}
     <h2>Tables to be Mashed</h2>
     {% for table in object_list %}
         <div class="table" id="table{{ table.id }}">
-            <h3>{{ table.title }}</h3>
+            <h3><a href="{{ table.get_absolute_url }}">{{ table.title }}</a></h3>
+            <div class="table-info">
+                <ul>
+                    <li>Added by: {{ table.added_by }}</li>
+                    <li>Created: {{ table.created }}</li>
+                    <li>Updated: {{ table.updated }}</li>
+                </ul>
+                <div class="description">
+                    {{ table.description }}
+                </div>
+            </div>
         </div>
     {% endfor %}
 {% endblock %}

@@ -1,0 +1,16 @@
+{% extends "tables/base.html" %}
+
+{% block content %}
+    <div class="table">
+        <table>
+        <tr>
+            {% for column in table.data.columns %}
+                <th>{{ column }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in table.data %}
+            {{ row.as_tr|safe }}
+        {% endfor %}
+        </table>
+    </div>
+{% endblock %}

@@ -49,10 +49,14 @@ class Table(models.Model):
     def  __unicode__(self):
         return self.title
     
+    @models.permalink
+    def get_absolute_url(self):
+        return ("tables_table_detail", None, {'id': self.pk})
+    
     def save(self, *args, **kwargs):
         if not self.columns and self.data:
             self.columns = self.data.columns
-            super(Table, self).save(*args, **kwargs)
+        super(Table, self).save(*args, **kwargs)
     
     @property
     def data(self):

@@ -1,6 +1,6 @@
 # Django settings for tablemasher project.
 import os
-
+INTERNAL_IPS = ('127.0.0.1',)
 DJANGO_ROOT = os.path.abspath(os.path.dirname(__file__))
 f = lambda fn: os.path.join(DJANGO_ROOT, fn)
 
@@ -77,6 +77,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'tablemasher.urls'
@@ -96,8 +97,14 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'debug_toolbar',
     'taggit',
     'tables',
 )
 
 DATA_DIR = f('data')
+
+# Debug toolbar
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': False,
+}

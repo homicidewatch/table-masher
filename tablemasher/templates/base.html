@@ -2,7 +2,12 @@
 <html lang='en'>
     <head>
         <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/screen.css" type="text/css" media="screen" charset="utf-8" />
+        {% block css %}
+            {% block css.shared %}
+            <link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/screen.css" type="text/css" media="screen" charset="utf-8" />
+            {% endblock %}
+            {% block css.custom %}{% endblock %}
+        {% endblock %}
         <script src="http://code.jquery.com/jquery-1.4.4.min.js" type="text/javascript" charset="utf-8"></script>
     </head>
     <body>
