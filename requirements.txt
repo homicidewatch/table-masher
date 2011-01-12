@@ -1,7 +1,8 @@
 django
 django-taggit
-django-piston
-
+django-debug-toolbar
 docutils
+gunicorn
 
--e git+http://github.com/eyeseast/python-tablefu#egg=python-tablefu
+-e git+http://github.com/eyeseast/python-tablefu.git#egg=python-tablefu
+-e git+http://github.com/mozilla/django-piston.git#egg=django-piston
