@@ -1,6 +1,19 @@
 {% extends "tables/base.html" %}
 
+{% block title %}{{ table.title }} | {{ block.super }}{% endblock %}
+
+{% block js %}
+{{ block.super }}
+
+{% endblock %}
+
 {% block content %}
+    <div id="title">
+        <h2>{{ table.title }}</h2>
+        <aside>{{ table.description }}</aside>
+    </div>
+    
+    <div id="chart"></div>
     <div class="table">
         <table>
         <tr>
