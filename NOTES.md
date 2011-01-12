@@ -97,4 +97,9 @@ URLs
  
  - /<id>/compare/<id>/
 
-The other thing I need here is a REST api. Piston it is then.
+The other thing I need here is a REST api. Piston it is then. Or maybe TastyPie?
+
+TODO:
+ - reformat Africa data
+ - write a better (simpler) list field
+ - comparison views

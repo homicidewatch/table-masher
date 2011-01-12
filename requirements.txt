@@ -3,5 +3,8 @@ django-taggit
 django-piston
 
 docutils
+gunicorn
+
+python-dateutil
 
 -e git+http://github.com/eyeseast/python-tablefu#egg=python-tablefu
