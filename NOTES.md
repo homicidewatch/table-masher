@@ -95,4 +95,6 @@ URLs
  - /<id>/compare/
  list other tables to compare this table to
  
- - /<id>/compare/<id>
+ - /<id>/compare/<id>/
+
+The other thing I need here is a REST api. Piston it is then.
