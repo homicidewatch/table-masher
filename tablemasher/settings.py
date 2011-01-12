@@ -100,6 +100,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'taggit',
     'tables',
+    'gunicorn',
 )
 
 DATA_DIR = f('data')
