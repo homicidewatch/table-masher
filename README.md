@@ -11,12 +11,11 @@ Quick start:
     $ cd table-masher
     $ pip install -r requirements.txt
     $ cd tablemasher
-    $ python manage.py validate
-    $ python manage.py syncdb
+    $ python manage.py validate && python manage.py syncdb
     $ python manage.py loaddata tables.json # it's in the tables app
     $ python manage.py runserver # or run_gunicorn
     
-Load some tables via the admin (http://localhost:8000/admin/).
+Load some tables via the admin (http://localhost:8000/admin/). See them at localhost:8000.
 
 Comparing tables (not implemented just yet):
 --------------------------------------------
