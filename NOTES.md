@@ -98,3 +98,8 @@ URLs
  - /<id>/compare/<id>/
 
 The other thing I need here is a REST api. Piston it is then.
+
+TODO:
+ - comparison views
+ - better column choice interface (and a better way to describe that)
+ - javascript, somewhere, somehow, for something
