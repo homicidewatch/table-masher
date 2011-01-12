@@ -9,6 +9,7 @@ class TableHandler(BaseHandler):
     """
     allowed_methods = ('GET',)
     model = Table
+    exclude = ('added_by',)
     
     def read(self, request, **kwargs):
         if 'id' in kwargs:
@@ -44,3 +45,14 @@ class ColumnHandler(BaseHandler):
         table.columns = request.data.get('columns', None)
         table.save()
         return table.columns
+
+class DataHandler(BaseHandler):
+    
+    def read(self, request, id, **kwargs):
+        try:
+            table = Table.objects.public().get(pk=id)
+        except Table.DoesNotExist:
+            return rc.DOES_NOT_EXIST
+        
+        return list(table.data.dict())
+    
